@@ -1,3 +1,5 @@
+This is the code for our paper, ["Can I Trust My Fairness Metric? Assessing Fairness with Unlabeled Data and Bayesian Inference."](https://arxiv.org/abs/2010.09851)
+
 ## Getting started
 To setup virtual environment install dependencies in `requirements.txt`:
 ```
@@ -55,3 +57,17 @@ python hierarchical_beta_conditional_metrics.py  -dataset adult -attribute sex -
 ## To reproduce the results reported in the paper and supplements
 - `cd src`
 - `bash script`
+
+
+## References
+Please consider citing our paper if you found this work useful!
+```
+@inproceedings{ji2020can,
+  title={Can I Trust My Fairness Metric? {A}ssessing Fairness with Unlabeled Data and {B}ayesian Inference},
+  author={Ji, Disi and Smyth, Padhraic and Steyvers, Mark},
+  booktitle={Advances in Neural Information Processing Systems},
+  year={2020}
+}
+```
+## Contact
+This code was developed by Disi Ji. Reach out to me with any questions! My email is : disij@uci.edu.
