@@ -1,0 +1,175 @@
+## TRAIN CALIBRATION MODELS AND GENERATE ACCURACY RESULTS
+
+declare -a MethodArray=("hierarchical_beta_binomial" "hierarchical_llo_calibration" "beta_binomial" "hierarchical_beta_calibration")
+for method in "${MethodArray[@]}"
+do
+    for j in {2,5,10,20,40,60,80,100,200,400,600,800,1000,10054}
+    do
+        for i in {0..100}
+        do
+            python $method.py -dataset adult -attribute sex -num_groups 2 -budget $j -run_id $i
+        done
+    done
+done
+
+
+for method in "${MethodArray[@]}"
+do
+    for j in {5,10,20,40,60,80,100,200,400,600,800,1000,10054}
+    do
+        for i in {0..100}
+        do
+            python $method.py -dataset adult -attribute race -num_groups 5 -budget $j -run_id $i
+        done
+    done
+done
+
+
+for method in "${MethodArray[@]}"
+do
+    for j in {2,5,10,20,40,60,80,100,200,400,600,800,1000,13730}
+    do
+    for i in {0..100}
+        do
+            python $method.py -dataset bank -attribute age -num_groups 2 -budget $j -run_id $i
+        done
+    done
+done
+
+
+for method in "${MethodArray[@]}"
+do
+    for j in {2,5,10,20,40,60,80,100,200,400,600,800,1000,1337}
+    do
+        for i in {0..100}
+        do
+            python $method.py -dataset propublica-violent-recidivism -attribute sex -num_groups 2 -budget $j -run_id $i
+        done
+    done
+done
+
+
+for method in "${MethodArray[@]}"
+do
+    for j in {6,10,20,40,60,80,100,200,400,600,800,1000,1337}
+    do
+        for i in {0..100}
+        do
+            python $method.py -dataset propublica-violent-recidivism -attribute race -num_groups 6 -budget $j -run_id $i
+        done
+    done
+done
+
+
+for method in "${MethodArray[@]}"
+do
+    for j in {2,5,10,20,40,60,80,100,200,334}
+    do
+        for i in {0..100}
+        do
+            python $method.py -dataset german -attribute sex -num_groups 2 -budget $j -run_id $i
+        done
+    done
+done
+
+
+for method in "${MethodArray[@]}"
+do
+    for j in {2,5,10,20,40,60,80,100,200,334}
+    do
+        for i in {0..100}
+        do
+            python $method.py -dataset german -attribute age -num_groups 2 -budget $j -run_id $i
+        done
+        done
+done
+
+
+for method in "${MethodArray[@]}"
+do
+    for j in {3,5,10,15,20,25,30,35,40}
+    do
+        for i in {0..100}
+        do
+            python $method.py -dataset ricci -attribute Race -num_groups 3 -budget $j -run_id $i
+        done
+        done
+done
+
+
+for method in "${MethodArray[@]}"
+do
+    for j in {2,5,10,20,40,60,80,100,200,400,600,800,1000,2056}
+    do
+        for i in {0..100}
+        do
+            python $method.py -dataset propublica-recidivism -attribute sex -num_groups 2 -budget $j -run_id $i
+        done
+    done
+done
+
+
+for method in "${MethodArray[@]}"
+do
+    for j in {6,10,20,40,60,80,100,200,400,600,800,1000,2056}
+    do
+        for i in {0..100}
+        do
+            python $method.py -dataset propublica-recidivism -attribute race -num_groups 6 -budget $j -run_id $i
+        done
+    done
+done
+
+
+## GENERATE TPR/FNR RESULTS
+
+for j in {10,20,40,60,80,100,200,400,600,800,1000,10054}
+do
+    python hierarchical_beta_conditional_metrics.py  -dataset adult -attribute sex -num_groups 2 -num_runs 100 -budget $j
+done
+
+for j in {10,20,40,60,80,100,200,400,600,800,1000,10054}
+do
+    python hierarchical_beta_conditional_metrics.py -dataset adult -attribute race -num_groups 5 -num_runs 100 -budget $j
+done
+
+for j in {10,20,40,60,80,100,200,400,600,800,1000,13730}
+do
+    python hierarchical_beta_conditional_metrics.py -dataset bank -attribute age -num_groups 2 -num_runs 100 -budget $j
+done
+
+for j in {10,20,40,60,80,100,200,400,600,800,1000,1337}
+do
+    python hierarchical_beta_conditional_metrics.py -dataset propublica-violent-recidivism -attribute sex -num_groups 2 -num_runs 100 -budget $j
+done
+
+for j in {10,20,40,60,80,100,200,400,600,800,1000,1337}
+do
+    python hierarchical_beta_conditional_metrics.py -dataset propublica-violent-recidivism -attribute race -num_groups 6 -num_runs 100 -budget $j 
+done
+
+for j in {10,20,40,60,80,100,200,334}
+do
+    python hierarchical_beta_conditional_metrics.py -dataset german -attribute sex -num_groups 2 -num_runs 100 -budget $j
+done
+
+
+for j in {10,20,40,60,80,100,200,334}
+do
+    python hierarchical_beta_conditional_metrics.py -dataset german -attribute age -num_groups 2 -num_runs 100 -budget $j
+done
+
+for j in {10,15,20,25,30,35,40}
+do
+    python hierarchical_beta_conditional_metrics.py -dataset ricci -attribute Race -num_groups 3 -num_runs 100 -budget $j 
+done
+
+for j in {10,20,40,60,80,100,200,400,600,800,1000,2056}
+do
+    python hierarchical_beta_conditional_metrics.py -dataset propublica-recidivism -attribute sex -num_groups 2 -num_runs 100 -budget $j
+done
+
+for j in {10,20,40,60,80,100,200,400,600,800,1000,2056}
+do
+    python hierarchical_beta_conditional_metrics.py -dataset propublica-recidivism -attribute race -num_groups 6 -num_runs 100 -budget $j 
+done
