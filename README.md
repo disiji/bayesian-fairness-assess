@@ -29,6 +29,9 @@ We provide an example to train calibration models on `adult` data with sensitive
 # navigate to source code directory
 cd src
 
+# map string attributes/labels to numbers
+python remap.py
+
 # define the list of methods
 declare -a MethodArray=("hierarchical_beta_binomial" "hierarchical_llo_calibration" "beta_binomial" "hierarchical_beta_calibration")
 

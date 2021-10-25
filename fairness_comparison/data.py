@@ -12,7 +12,7 @@ def local_results_path():
     return path
 
 
-BASE_DIR = Path('PATH/TO/BASE')
+BASE_DIR = Path(__file__).parents[1]
 RAW_DATA_DIR = BASE_DIR / 'data' / 'raw'
 PROCESSED_DATA_DIR = BASE_DIR / 'data' / 'preprocessed'
 RESULT_DIR = BASE_DIR / 'results'
@@ -419,7 +419,7 @@ DATASETS = [
     PropublicaRecidivism(),
     PropublicaViolentRecidivism(),
     Bank(),
-    Credit(),
+    # Credit(),
     # Census(),
 ]
 

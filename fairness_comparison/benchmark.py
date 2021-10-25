@@ -2,7 +2,6 @@ from copy import deepcopy
 
 import fire
 from algorithms import ALGORITHMS
-from bayesian_metrics import get_bayesian_metrics
 from metrics import get_metrics
 from preprocess import ProcessedData
 from results_utils import create_detailed_file, write_alg_results, write_predicted_probs
@@ -124,10 +123,6 @@ def run_eval_alg(algorithm, train, test, dataset, processed_data, all_sensitive_
     sensitive_dict = processed_data.get_sensitive_values(tag)
     metrics_eval = []
     for metric in get_metrics(dataset, sensitive_dict, tag):
-        result = metric.calc(actual, alg_output['predictions'], dict_sensitive_lists, single_sensitive,
-                             privileged_vals, positive_val)
-        metrics_eval.append(result)
-    for metric in deepcopy(get_bayesian_metrics(dataset, sensitive_dict, tag)):
         result = metric.calc(actual, alg_output['predictions'], dict_sensitive_lists, single_sensitive,
                              privileged_vals, positive_val)
         metrics_eval.append(result)

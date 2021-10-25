@@ -14,9 +14,8 @@ plt.style.use('ggplot')
 
 DIAGNOSIS = False
 
-DIR = 'PATH/TO/DATA/'
-OUTPUT_DIR = 'PATH/TO/OUTPUT/'
-FIG_DIR = 'PATH/TO/FIGURES/'
+DIR = '../results/'
+OUTPUT_DIR = '../results/'
 
 
 def main():
